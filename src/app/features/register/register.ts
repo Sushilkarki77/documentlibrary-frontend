@@ -49,7 +49,7 @@ export class Register {
       this.router.navigate(['login']);
       this.toastService.show("Registration successful!")
     }, err => {
-      this.toastService.show(err.message)
+      this.toastService.show(err.error.message || err.message)
     })
 
   }

@@ -1,11 +1,16 @@
 .mat-elevation-z8 {
-    background: inherit;
+  background: inherit;
 }
 
-
 .sort-icon {
-    font-size: 1rem;
-    
-    transform: translateY(38%);
-    cursor: pointer;
+  font-size: 1rem;
+
+  transform: translateY(38%);
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .title-content-table {
+    max-width: 150px;
+  }
 }

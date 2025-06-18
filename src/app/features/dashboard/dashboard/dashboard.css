@@ -56,3 +56,23 @@
     width: 100px;
   }
 }
+
+.profile-btn {
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+
+
+@media (max-width: 600px) { 
+  .logo img {
+    width: 85px;   
+    height: auto; 
+    
+  }
+
+ .navbar {
+    padding: 0 0 !important;
+  }
+}

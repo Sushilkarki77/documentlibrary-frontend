@@ -27,6 +27,7 @@ mat-progress-bar {
   flex-grow: 1;
   transition: margin-top 0.4s ease;
   margin-top: 30vh;
+  row-gap: 1rem;
 }
 
 .searched {

@@ -7,7 +7,7 @@
 
   <ng-container matColumnDef="title">
     <th mat-header-cell *matHeaderCellDef> Document Title  </th>
-    <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+    <td class="title-content-table" mat-cell *matCellDef="let element"> {{element.title}} </td>
   </ng-container>
 
   <ng-container matColumnDef="AddedDate">
@@ -18,13 +18,13 @@
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef> Actions </th>
     <td mat-cell *matCellDef="let element">
-      <button mat-icon-button color="accent" (click)="viewEmit.emit(element._id)">
-        <mat-icon style=" color: #1976d2;">visibility</mat-icon>
-      </button>
+      
+        <mat-icon (click)="viewEmit.emit(element._id)" style=" color: #1976d2;font-size: 1.25rem;cursor: pointer;">visibility</mat-icon>
+
     
-      <button mat-icon-button color="warn"  (click)="deleteEmit.emit(element._id)">
-        <mat-icon style=" color: #d32f2f;">delete</mat-icon>
-      </button>
+      
+        <mat-icon  (click)="deleteEmit.emit(element._id)" style=" color: #d32f2f;font-size: 1.25rem;cursor: pointer;">delete</mat-icon>
+    
     </td>
   </ng-container>
 

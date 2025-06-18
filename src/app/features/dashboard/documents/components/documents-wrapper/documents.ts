@@ -13,6 +13,7 @@ import { HttpEvent, HttpEventType } from '@angular/common/http';
 import { toastService } from '../../../../../core/toast-service';
 import { DocViewer } from "../../../../../common/components/doc-viewer/doc-viewer";
 import { MatFormField } from '@angular/material/form-field';
+import { MatProgressBar } from '@angular/material/progress-bar';
 
 
 type SortOrder = 'ascending' | 'descending' | 'default';
@@ -49,7 +50,7 @@ const sortDocuments = <T extends Record<string, any>>(docs: T[], sortState: Sort
 
 @Component({
   selector: 'app-documents',
-  imports: [DocumentList, MatCardModule, MatIcon, MatButton, MatPaginatorModule],
+  imports: [DocumentList, MatCardModule, MatIcon, MatButton, MatPaginatorModule, MatProgressBar],
   templateUrl: './documents.html',
   styleUrl: './documents.css'
 })
@@ -60,6 +61,7 @@ export class Documents {
   $documents = signal<Document[]>([]);
   $pageIndex = signal<number>(0);
   $searchQuery = signal('');
+  $componentState = signal<'initial' | 'loading' | 'completed' | 'error'>('initial')
 
   $sortState = signal<{ dateSort: SortOrder, titleSort: SortOrder }>({ dateSort: 'descending', titleSort: 'default' });
 
@@ -85,8 +87,12 @@ export class Documents {
 
   constructor() {
     effect(() => {
+      this.$componentState.set('loading')
       this.documentAPIService.getDocuments().subscribe(res => {
-        this.$documents.set(res.data)
+        this.$documents.set(res.data);
+        this.$componentState.set('completed');
+      }, err => {
+        this.$componentState.set('error')
       })
     });
   }

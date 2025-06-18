@@ -40,4 +40,6 @@ mat-paginator {
   padding: 20px;
   display: flex;
   justify-content: space-between;
+      flex-wrap: wrap;
+      row-gap: 1rem;
 }

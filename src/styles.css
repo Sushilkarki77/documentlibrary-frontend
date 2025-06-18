@@ -139,3 +139,20 @@ button.mat-raised-button:hover {
   border: solid 1px var(--primary-color);
 }
 
+
+
+.mdc-data-table__cell, .mdc-data-table__header-cell {
+  padding: 0 !important;
+}
+
+@media (max-width: 600px) { 
+  .logo {
+    width: 67px;   
+    height: auto; 
+    
+  }
+
+  .mat-toolbar.navbar {
+    padding: 0;
+  }
+}
