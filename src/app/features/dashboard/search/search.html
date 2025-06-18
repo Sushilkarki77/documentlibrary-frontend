@@ -1,0 +1,55 @@
+@if($searchState() == 'started'){
+<mat-progress-bar mode="indeterminate"></mat-progress-bar>
+}
+
+
+<div class="search-box-wrapper">
+    <div class="search-input-wrapper mb-1" [ngClass]="{ 'searched': $searchState() != 'before-start'  }">
+        <div class="input-wrapper">
+            <input [value]="searchQuery()" (input)="searchQuery.set($any($event.target).value)" class="search-box"
+                placeholder="Search or ask question" (keyup.enter)="onSearch()" />
+            <button mat-icon-button color="primary" class="send-button" (click)="onSearch()">
+                <mat-icon>arrow_forward</mat-icon>
+            </button>
+        </div>
+    </div>
+
+    @if ($searchState() != 'before-start') {
+    <div>
+        @let botAnswer = $searchResponse()?.answer;
+        @if (botAnswer) {
+        <div class="search-item-card bot-result mt-1 mb-1">
+            <div class="bot-answer-title"><mat-icon>auto_awesome</mat-icon> AI overview:</div>
+            <app-safe-html [$content]="botAnswer"></app-safe-html>
+        </div>
+
+        }
+        @for (item of $searchResponse()?.resultItems; track $index) {
+        <app-search-item  [$data]="item" (viewDocument)="viewDocument($event)"></app-search-item>
+        } @empty {
+        @if($searchState() != 'started') {
+        <div class="no-result">
+            <h3>No results found.</h3>
+            <p>We couldn’t find any documents matching your search. Try refining your keywords.</p>
+        </div>
+        }
+
+        }
+    </div>
+    } @else if ($searchState() == 'failed') {
+    <div class="no-result">
+        <h3>Something went wrong!!</h3>
+        <p>Please try again</p>
+    </div>
+    }
+
+     @let totalCount = $searchResponse()?.totalCount || 0;
+    @if(totalCount > 0) {
+    <mat-paginator class="mat-paginator-search-result mb-1" [length]="totalCount" (page)="handlePageEvent($event)" [pageSize]="pageSize"
+        [hidePageSize]="true" [pageIndex]="$pageIndex()" aria-label="Select page">
+    </mat-paginator>
+    }
+   
+
+
+</div>

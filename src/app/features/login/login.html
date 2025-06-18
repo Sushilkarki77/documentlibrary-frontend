@@ -1,0 +1,42 @@
+<div class="full-page-center">
+    <mat-card class="login-card">
+         <div class="logo mb-2"> <img width="100px" className='logo-dashboard' src="logo.png" /></div>
+        <form [formGroup]="loginGroup" (ngSubmit)="handleFormSubmit()">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Email</mat-label>
+                @let emailControl = getFormControl('email');
+                <input matInput type="email" [formControl]="emailControl" placeholder="Enter your email" />
+                @if (emailControl.errors && emailControl.touched) {
+                @if (emailControl.hasError('required')) {
+                <div>Email is Required</div>
+                }
+                @if (emailControl.hasError('email')) {
+                <div>Not a valid email</div>
+                }
+                }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Password</mat-label>
+                @let passwordControl = getFormControl('password');
+                <input matInput type="password" [formControl]="passwordControl" placeholder="Enter your password" />
+                @if (passwordControl.errors && passwordControl.touched) {
+                @if (passwordControl.hasError('required')) {
+                <div>Password is Required</div>
+                }
+                @if (passwordControl.hasError('minlength')) {
+                <div>password must be of length X.</div>
+                }
+                }
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" class="full-width" [disabled]="!this.loginGroup.valid">
+                Login
+            </button>
+            <a mat-button class="custom-button-plain register-button" [routerLink]="'/register'">
+                Register
+                <mat-icon>arrow_forward</mat-icon>
+            </a>
+        </form>
+    </mat-card>
+</div>

@@ -1,0 +1,42 @@
+<mat-card class="search-item-card mb-1">
+    <mat-card-header>    
+        <mat-card-title [matTooltip]="$data().title"  matTooltipPosition="above" [matTooltipShowDelay]="1000" [matTooltipHideDelay]="100" class="card-title">
+           <mat-icon class="header-icon" >text_snippet</mat-icon>
+            {{ $data().title.length > 250 ? ($data().title | slice:0:250) + '...' : $data().title }}
+        </mat-card-title>
+
+    </mat-card-header>
+
+    <mat-card-content>
+        <p class="text-sm text-gray-800 mb-1">
+            {{ $data().previewText }}
+        </p>
+
+        <div class="">
+            <div class="chips-wrapper">
+                @for (tag of $data().tags; track $index) {
+                <mat-chip color="primary" selected>
+                    {{ tag }}
+                </mat-chip>
+                }
+
+            </div>
+        </div>
+
+
+        <div class="search-card-footer">
+            <p class="text-xs icon-wrapper text-gray-500">
+                <mat-icon color="accent">picture_as_pdf</mat-icon>
+                File: {{ $data().originalDocument.title }}
+            </p>
+            <mat-card-actions>
+                <button mat-button color="primary" (click)="viewDocument.emit($data().originalDocument._id)">
+                    <mat-icon>visibility</mat-icon> View
+                </button>
+            </mat-card-actions>
+        </div>
+
+    </mat-card-content>
+
+
+</mat-card>

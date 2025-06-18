@@ -1,0 +1,38 @@
+:host{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.register-card {
+  padding: 2rem;
+  width: 400px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  border-radius: 4px;
+    background: var(--white);
+}
+
+.full-width {
+  width: 100%;
+}
+
+button.mat-raised-button {
+  border-radius: 0 !important; 
+  display: block;              
+  background-color: var(--primary-color);
+  color: var(--button-text-color);
+  width: 100%;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem; 
+}
+
+button.mat-raised-button:hover {
+  background-color: var(--primary-color-hover);
+}
+
+.login-button {
+    margin-top: 1rem;
+}

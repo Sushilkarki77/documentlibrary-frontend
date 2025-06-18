@@ -1,0 +1,58 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.navbar {
+  background-color: var(--navbar-bg);
+  color: var(--text-color);
+  display: flex;
+  padding: 0 1rem;
+  box-shadow: var(--navbar-shadow);
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  min-height: 65px;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 64px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.nav-link {
+  color: var(--text-color);
+  text-decoration: none;
+  margin-left: 1rem;
+}
+
+.nav-link:hover {
+  background-color: var(--hover-bg-color);
+}
+
+.nav-link {
+  height: 100%;
+  border-radius: 0;
+}
+
+.nav-link.active-nav {
+  border-bottom: solid 2px var(--primary-color);
+}
+
+.nav-link.active-nav,
+.nav-link.active-nav .nav-text {
+  color: var(--primary-color);
+}
+
+.logo {
+  display: flex;
+  img {
+    width: 100px;
+  }
+}

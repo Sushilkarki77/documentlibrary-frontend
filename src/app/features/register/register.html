@@ -1,0 +1,68 @@
+<mat-card class="register-card">
+     <div class="logo mb-2"> <img width="100px" className='logo-dashboard' src="logo.png" /></div>
+    <form [formGroup]="registrartinForm" (ngSubmit)="submitRegister()">
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Email</mat-label>
+            @let emailControl = getFormControl('email');
+            <input matInput type="text" [formControl]="emailControl" placeholder="Enter your Email" />
+
+            @if(emailControl.errors && emailControl.touched){
+            @if(emailControl.hasError('required')){
+            <div>Email is required</div>
+            }
+            @if(emailControl.hasError('email')){
+            <div>Not a valid email!</div>
+            }
+            }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Full Name</mat-label>
+            @let fullnameControl = getFormControl('fullname');
+            <input matInput type="text" [formControl]="fullnameControl" placeholder="Enter your Full Name" />
+
+            @if(fullnameControl.errors && fullnameControl.touched){
+            @if(fullnameControl.hasError('required')){
+            <div>Full name is required</div>
+            }
+            }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Password</mat-label>
+            @let passwordControl = getFormControl('password');
+            <input matInput type="password" [formControl]="passwordControl" placeholder="Enter your password" />
+
+            @if(passwordControl.errors && passwordControl.touched){
+            @if(passwordControl.hasError('required')){
+            <div>Password is required</div>
+            }
+            }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Confirm Password</mat-label>
+            @let ConfirmPasswordControl = getFormControl('confirmPassword');
+            <input matInput type="password" [formControl]="ConfirmPasswordControl" placeholder="Enter your password" />
+            @if(ConfirmPasswordControl.errors && ConfirmPasswordControl.touched){
+            @if(ConfirmPasswordControl.hasError('required')){
+            <div>Confirm Password is required</div>
+            }
+            }
+
+        </mat-form-field>
+
+        @if(registrartinForm.hasError('passwordMisMatch') && ConfirmPasswordControl.touched && passwordControl.touched){
+        <div>Password did not match</div>
+        }
+
+        <button mat-raised-button color="primary" class="full-width" [disabled]="!this.registrartinForm.valid">
+            Register
+        </button>
+
+        <a mat-button class="custom-button-plain login-button" [routerLink]="'/login'">
+            login
+            <mat-icon>arrow_back</mat-icon>
+        </a>
+    </form>
+</mat-card>

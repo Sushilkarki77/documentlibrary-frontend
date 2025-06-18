@@ -1,0 +1,23 @@
+<mat-dialog-content>
+    <p><b>{{data.title}}</b></p>
+    <div>
+        <input type="file" accept=".pdf" #fileInput (change)="onFileSelected($event)" hidden/>
+    </div>
+    <mat-form-field appearance="outline" class="file-name-field">
+    <mat-label>Choose File</mat-label>
+    <input
+      matInput
+      [value]="selectedFile?.name || ''"
+      readonly
+      (click)="triggerFileInput()"
+      placeholder="No file selected"
+    />
+    <button mat-icon-button matSuffix (click)="triggerFileInput()" type="button">
+      <mat-icon>attach_file</mat-icon>
+    </button>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button matButton="filled" [disabled]="!this.selectedFile" (click)="closeOverlay(this.selectedFile)">upload</button>
+    <button  matButton="tonal" (click)="closeOverlay(null)">close</button>
+</mat-dialog-actions>

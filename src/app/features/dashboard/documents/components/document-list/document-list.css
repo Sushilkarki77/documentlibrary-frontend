@@ -1,0 +1,11 @@
+.mat-elevation-z8 {
+    background: inherit;
+}
+
+
+.sort-icon {
+    font-size: 1rem;
+    
+    transform: translateY(38%);
+    cursor: pointer;
+}

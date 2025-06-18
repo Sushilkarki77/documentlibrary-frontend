@@ -1,0 +1,16 @@
+<mat-toolbar class="navbar">
+    <div class="logo"> <img width="100px" className='logo-dashboard' src="logo.png" /></div>
+    <span class="spacer"></span>
+    <a mat-button routerLink="/dashboard/search" [queryParamsHandling]="'preserve'" class="nav-link" routerLinkActive="active-nav"
+       
+        ><span class="nav-text">Search</span> </a>
+    <a mat-button routerLink="/dashboard/documents" class="nav-link" [queryParamsHandling]="'preserve'" routerLinkActive="active-nav"
+        [routerLinkActiveOptions]="{ exact: true }">Documents</a>
+
+    <button matButton="outlined" class="ml-2" [matMenuTriggerFor]="menu">{{authService.getUser().fullname.split(' ')[0] }}</button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="authService.logout()">Log out</button>
+    </mat-menu>
+</mat-toolbar>
+
+<router-outlet />

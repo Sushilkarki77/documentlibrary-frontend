@@ -1,0 +1,25 @@
+<mat-card class="card-full card-custom-bg-white">
+    <mat-card-title>
+        <div class="search-input-wrapper">
+            <span>Documents</span> <input class="search-input-documents" type="text" placeholder="search by document name" [value]="$searchQuery()" (input)="$searchQuery.set($any($event.target).value)">
+            <button mat-raised-button color="primary" (click)="openAddDialog()">
+                <mat-icon>add</mat-icon>
+                Add
+            </button>
+        </div>
+    </mat-card-title>
+    <mat-card-content>
+        @if( $totalNumberOfDoc() > 0){
+        <app-document-list class="documents-list" [dataSource]="$paginatedDocs()" [dateSort]="$sortState().dateSort" (dateSortEmit)="handleDateSort()"  [displayedColumns]="columnNames"
+            (deleteEmit)="deleteDocument($event)" (viewEmit)="viewDocument($event)"></app-document-list>
+
+        <mat-paginator  [length]="$totalNumberOfDoc()" (page)="handlePageEvent($event)" [pageSize]="pageSize"
+            [hidePageSize]="true" [pageIndex]="$pageIndex()" aria-label="Select page">
+
+        </mat-paginator>
+        } @else {
+        <div>No Documents!</div>
+        }
+
+    </mat-card-content>
+</mat-card>

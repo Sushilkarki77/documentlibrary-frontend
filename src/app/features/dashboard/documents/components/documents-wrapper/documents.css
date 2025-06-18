@@ -1,0 +1,43 @@
+.card-full {
+  margin: 16px;
+
+  box-sizing: border-box;
+}
+
+.documents-list {
+  padding: 0;
+  margin: 0;
+}
+
+.doc-viewer-wrapper {
+  border-radius: 0;
+}
+
+mat-paginator {
+  background-color: inherit;
+}
+
+.card-custom-bg-white {
+  background-color: var(--white);
+}
+
+.small-input {
+  max-width: 200px;
+  height: 32px;
+}
+
+.small-input .mat-input-element {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.search-input-documents {
+  margin-right: auto;
+  margin-left: 28px;
+}
+
+.search-input-wrapper {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
