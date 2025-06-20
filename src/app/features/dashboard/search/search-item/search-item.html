@@ -1,9 +1,9 @@
 <mat-card class="search-item-card mb-1">
     <mat-card-header>    
-        <mat-card-title [matTooltip]="$data().title"  matTooltipPosition="above" [matTooltipShowDelay]="1000" [matTooltipHideDelay]="100" class="card-title">
+        <div  class="card-title">
            <mat-icon class="header-icon" >text_snippet</mat-icon>
             {{ $data().title.length > 250 ? ($data().title | slice:0:250) + '...' : $data().title }}
-        </mat-card-title>
+        </div>
 
     </mat-card-header>
 

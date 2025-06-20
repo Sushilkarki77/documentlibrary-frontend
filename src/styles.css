@@ -153,6 +153,11 @@ button.mat-raised-button:hover {
   }
 
   .mat-toolbar.navbar {
-    padding: 0;
+   padding: 0.15rem 0.35rem !important;
   }
+  
+.searched {
+  margin-top: 0rem !important;
+  /* background: white; */
+}
 }

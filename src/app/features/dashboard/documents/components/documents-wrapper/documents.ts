@@ -9,7 +9,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { AddDocumentOverlay } from '../add-document-overlay/add-document-overlay';
 import { DocumentsApiService } from '../../services/documents-api-service';
 import { switchMap } from 'rxjs';
-import { HttpEvent, HttpEventType } from '@angular/common/http';
+import { HttpErrorResponse, HttpEvent, HttpEventType } from '@angular/common/http';
 import { toastService } from '../../../../../core/toast-service';
 import { DocViewer } from "../../../../../common/components/doc-viewer/doc-viewer";
 import { MatFormField } from '@angular/material/form-field';
@@ -91,8 +91,8 @@ export class Documents {
       this.documentAPIService.getDocuments().subscribe(res => {
         this.$documents.set(res.data);
         this.$componentState.set('completed');
-      }, err => {
-        this.$componentState.set('error')
+      }, (err: HttpErrorResponse) => {
+        if(err.status != 401) this.$componentState.set('error')
       })
     });
   }
@@ -178,7 +178,11 @@ export class Documents {
 
   viewDocument = (_id: string) => {
     this.documentAPIService.getDownloadUrl(_id).subscribe(res => {
-      this.openDialogDocViewer(res.data.downloadURL);
+      if (window.innerWidth < 600) {
+        window.open(res.data.downloadURL, '_blank');
+      } else {
+        this.openDialogDocViewer(res.data.downloadURL);
+      }
     })
   }
 

@@ -5,11 +5,11 @@ import { MatIcon } from '@angular/material/icon';
 import { ResultItem } from '../services/search.interface';
 import { MatButton } from '@angular/material/button';
 import { SlicePipe } from '@angular/common';
-import { MatTooltip } from '@angular/material/tooltip';
+
 
 @Component({
   selector: 'app-search-item',
-  imports: [MatCard, MatCardHeader, MatCardTitle,  MatButton, MatCardContent, MatChip, MatIcon, MatCardActions,SlicePipe, MatTooltip],
+  imports: [MatCard, MatCardHeader,  MatButton, MatCardContent, MatChip, MatIcon, MatCardActions,SlicePipe],
   templateUrl: './search-item.html',
   styleUrl: './search-item.css'
 })

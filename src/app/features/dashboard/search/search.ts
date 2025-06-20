@@ -21,7 +21,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
   selector: 'app-search',
   imports: [FormsModule, MatIconButton, MatIcon, CommonModule, SearchItem, SafeHTML, MatProgressBarModule, MatPaginator],
   templateUrl: './search.html',
-  styleUrl: './search.css' 
+  styleUrl: './search.css'
 })
 export class Search {
   pageSize = 10;
@@ -74,8 +74,13 @@ export class Search {
 
 
   viewDocument = (_id: string) => {
+
     this.documentAPIService.getDownloadUrl(_id).subscribe(res => {
-      this.openDialogDocViewer(res.data.downloadURL);
+      if (window.innerWidth < 600) {
+        window.open(res.data.downloadURL, '_blank');
+      } else {
+        this.openDialogDocViewer(res.data.downloadURL);
+      }
     })
   }
 
@@ -90,7 +95,7 @@ export class Search {
   }
 
   handlePageEvent = (e: PageEvent) => {
-   
+
     this.$pageIndex.set(e.pageIndex);
     this.updateQueryParam(this.searchQuery(), e.pageIndex);
   }

@@ -1,3 +1,6 @@
+@if( $componentState() == 'loading') {
+<mat-progress-bar mode="indeterminate"></mat-progress-bar>
+}
 <mat-card class="card-full card-custom-bg-white">
     <mat-card-title>
         <div class="search-input-wrapper">
@@ -11,9 +14,7 @@
         </div>
     </mat-card-title>
     @switch ($componentState()) {
-    @case ('loading') {
-      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-    }@case ('completed') {
+    @case ('completed') {
     <mat-card-content>
         @if( $totalNumberOfDoc() > 0){
         <app-document-list class="documents-list" [dataSource]="$paginatedDocs()" [dateSort]="$sortState().dateSort"
@@ -30,7 +31,7 @@
 
     </mat-card-content>
     } @case ('error') {
-       <div>Something went wrong, try again!</div>
+    <div>Something went wrong, try again!</div>
     }
     }
 
